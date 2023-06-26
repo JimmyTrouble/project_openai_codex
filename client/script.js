@@ -60,6 +60,23 @@ function chatStripe(isAi, value, uniqueId) {
     `;
 }
 
+intialPrompt();
+
+const intialPrompt = async (e) => {
+  e.preventDefault();
+
+  const response = await fetch("https://codex-88s6.onrender.com", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      prompt: data.get("Hello"),
+    }),
+  });
+  const data = await response.json();
+};
+
 const handleSubmit = async (e) => {
   e.preventDefault();
 
