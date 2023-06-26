@@ -6,6 +6,8 @@ const chatContainer = document.querySelector("#chat_container");
 
 let loadInterval;
 
+intialPrompt();
+
 function loader(element) {
   element.textContent = "";
 
@@ -60,11 +62,8 @@ function chatStripe(isAi, value, uniqueId) {
     `;
 }
 
-intialPrompt();
-
 const intialPrompt = async (e) => {
-  e.preventDefault();
-
+  console.log("intial");
   const response = await fetch("https://codex-88s6.onrender.com", {
     method: "POST",
     headers: {
