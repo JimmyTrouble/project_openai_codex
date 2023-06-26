@@ -60,6 +60,22 @@ function chatStripe(isAi, value, uniqueId) {
     `;
 }
 
+const initialPrompt = async () => {
+  const response = await fetch("https://codex-88s6.onrender.com", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      prompt: "Hello",
+    }),
+  });
+  const data = await response.json();
+  // You should now do something with `data` like adding it to the chat UI
+};
+
+initialPrompt();
+
 const handleSubmit = async (e) => {
   e.preventDefault();
 
