@@ -60,22 +60,6 @@ function chatStripe(isAi, value, uniqueId) {
     `;
 }
 
-const initialPrompt = async () => {
-  const response = await fetch("https://codex-88s6.onrender.com", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      prompt: "Hello",
-    }),
-  });
-  const data = await response.json();
-  // You should now do something with `data` like adding it to the chat UI
-};
-
-initialPrompt();
-
 const handleSubmit = async (e) => {
   e.preventDefault();
 
@@ -126,6 +110,27 @@ const handleSubmit = async (e) => {
     //hello
   }
 };
+const initialPrompt = async (e) => {
+  const response = await fetch("https://codex-88s6.onrender.com", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      prompt: "Hello",
+    }),
+  });
+  const data = await response.json();
+  // You should now do something with `data` like adding it to the chat UI
+  if (response.ok) {
+    const data = await response.json();
+    const parsedData = data.bot.trim(); // trims any trailing spaces/'\n'
+
+    typeText(messageDiv, parsedData);
+  }
+};
+
+initialPrompt();
 
 form.addEventListener("submit", handleSubmit);
 form.addEventListener("keyup", (e) => {
