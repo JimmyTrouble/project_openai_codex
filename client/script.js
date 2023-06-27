@@ -90,7 +90,7 @@ const handleSubmit = async (e) => {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      prompt: data.get("prompt"),
+      prompt: "You are a western cowboy. " + data.get("prompt"),
     }),
   });
 
@@ -110,45 +110,6 @@ const handleSubmit = async (e) => {
     //hello
   }
 };
-const initialPrompt = async (e) => {
-  // bot's chatstripe for initial message
-  const uniqueId = generateUniqueId();
-  chatContainer.innerHTML += chatStripe(true, " ", uniqueId);
-
-  // specific message div
-  const messageDiv = document.getElementById(uniqueId);
-
-  // display loader while waiting for response
-  loader(messageDiv);
-
-  const response = await fetch("https://codex-88s6.onrender.com", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      prompt:
-        "can you respond to future inputs in the personality of a western cowboy?",
-    }),
-  });
-
-  clearInterval(loadInterval);
-  messageDiv.innerHTML = " ";
-
-  if (response.ok) {
-    const data = await response.json();
-    const parsedData = data.bot.trim(); // trims any trailing spaces/'\n'
-
-    typeText(messageDiv, parsedData);
-  } else {
-    const err = await response.text();
-
-    messageDiv.innerHTML = "Something went wrong";
-    alert(err);
-  }
-};
-
-initialPrompt();
 
 form.addEventListener("submit", handleSubmit);
 form.addEventListener("keyup", (e) => {
