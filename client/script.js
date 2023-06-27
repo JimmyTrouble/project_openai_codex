@@ -111,6 +111,16 @@ const handleSubmit = async (e) => {
   }
 };
 const initialPrompt = async (e) => {
+  // bot's chatstripe for initial message
+  const uniqueId = generateUniqueId();
+  chatContainer.innerHTML += chatStripe(true, " ", uniqueId);
+
+  // specific message div
+  const messageDiv = document.getElementById(uniqueId);
+
+  // display loader while waiting for response
+  loader(messageDiv);
+
   const response = await fetch("https://codex-88s6.onrender.com", {
     method: "POST",
     headers: {
@@ -120,13 +130,20 @@ const initialPrompt = async (e) => {
       prompt: "Hello",
     }),
   });
-  const data = await response.json();
-  // You should now do something with `data` like adding it to the chat UI
+
+  clearInterval(loadInterval);
+  messageDiv.innerHTML = " ";
+
   if (response.ok) {
     const data = await response.json();
     const parsedData = data.bot.trim(); // trims any trailing spaces/'\n'
 
     typeText(messageDiv, parsedData);
+  } else {
+    const err = await response.text();
+
+    messageDiv.innerHTML = "Something went wrong";
+    alert(err);
   }
 };
 
