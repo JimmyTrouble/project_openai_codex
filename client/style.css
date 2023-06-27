@@ -17,6 +17,19 @@ body {
   gap: 25px;
   margin-bottom: 10px;
 }
+.personActive {
+  background: #9d9da3;
+
+  padding: 10px;
+  color: #fffffff7;
+  font-size: 30px !important;
+
+  padding: 10px;
+
+  border-radius: 5px;
+  border: none;
+  outline: none;
+}
 .persona {
   background: #40414f;
 

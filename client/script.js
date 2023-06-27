@@ -6,6 +6,44 @@ const chatContainer = document.querySelector("#chat_container");
 
 let loadInterval;
 
+let personaButtons = document
+  .querySelector(".btnContainer")
+  .querySelectorAll("button");
+var persona = "normal";
+
+for (let i = 0; i < personaButtons.length; i++) {
+  personaButtons[i].addEventListener("click", function () {
+    // Remove the 'personaActive' class from all buttons and add 'persona'
+    for (let j = 0; j < personaButtons.length; j++) {
+      personaButtons[j].style.fontSize = "12px";
+      personaButtons[j].style.color = "#ffffffa5";
+      personaButtons[j].style.backgroundColor = "#40414f";
+    }
+
+    // Remove the 'persona' class from the clicked button and add 'personaActive'
+    switch (this.textContent) {
+      case "Cowboy":
+        persona =
+          "Respond as a cowboy, talk about the wild west as much as you can whilst also answering";
+        console.log(persona);
+        break;
+      case "Alien":
+        persona =
+          "Respond as an alien, talk about space as much as you can whilst also answering";
+        console.log(persona);
+        break;
+      case "CrowdClip enjoyer":
+        persona =
+          "Respond as someone who loves talking this thing called CrowdClip,  mention how great it is and how CrowdClip's powerful AI technology creates beautiful personalised videos from any event or experience in every response as much as you can whilst also answering";
+    }
+
+    console.log(persona);
+    this.style.fontSize = "24px";
+    this.style.color = "white";
+    this.style.backgroundColor = "#9d9da3";
+  });
+}
+
 function loader(element) {
   element.textContent = "";
 
@@ -90,7 +128,7 @@ const handleSubmit = async (e) => {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      prompt: "You are a western cowboy. " + data.get("prompt"),
+      prompt: `${persona}. ` + data.get("prompt"),
     }),
   });
 
