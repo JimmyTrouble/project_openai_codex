@@ -127,7 +127,7 @@ const initialPrompt = async (e) => {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      prompt: "You are answering questions like a 5-year-old",
+      prompt: "what is 1 + 1",
     }),
   });
 
