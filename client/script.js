@@ -32,9 +32,9 @@ for (let i = 0; i < personaButtons.length; i++) {
           "Respond as an alien, talk about space as much as you can whilst also answering";
         console.log(persona);
         break;
-      case "CrowdClip enjoyer":
+      case "Should you hire Liam?":
         persona =
-          "Respond as someone who loves talking this thing called CrowdClip,  mention how great it is and how CrowdClip's powerful AI technology creates beautiful personalised videos from any event or experience in every response as much as you can whilst also answering";
+          "Respond as someone who thinks Liam is a great web developer and you just to tell them how good he is at fullstack development and AI implementation whilst also responding";
     }
 
     console.log(persona);

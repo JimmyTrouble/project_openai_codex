@@ -178,6 +178,7 @@ button {
   border: 0;
   cursor: pointer;
   background: transparent;
+  min-width: 200px;
 }
 
 form img {
